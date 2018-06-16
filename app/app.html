@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <title>Electron Boilerplate</title>
+  </head>
+  <body>
+
+    <div id="app" class="container">
+      <div id="canvas" class="row align-items-center form-group">
+        <div id="canvas-1" class="col-sm"></div>
+        <div id="canvas-2" class="col-sm"></div>
+        <div id="canvas-3"  class="col-sm"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm">
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+            <input type="button" class="form-control" id="nextTick" value="Next Tick" >
+          </div>
+          <div class="form-group col-md-4">
+            <input type="button" class="form-control" id="nextScanline" value="Next Scanline" >
+          </div>
+          <div class="form-group col-md-4">
+            <input type="button" class="form-control" id="nextFrame" value="Next Frame">
+          </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input type="number" class="form-control" id="scanlineNumber" placeholder="Scanline Number">
+            </div>
+            <div class="form-group col-md-6">
+              <input type="button" class="form-control" id="scanlineNumberButton" value="Go">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input type="number" class="form-control" id="frameNumber" placeholder="Frame Number">
+            </div>
+            <div class="form-group col-md-6">
+              <input type="button" class="form-control" id="frameNumberButton" value="Go">
+            </div>
+          </div>
+          <div class="form-group">
+             <input type="button" class="form-control" id="nesPauseToggle" value="Pause">
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
