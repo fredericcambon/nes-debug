@@ -6,13 +6,29 @@
   </head>
   <body>
 
-    <div id="app" class="container">
-      <div id="canvas" class="row align-items-center form-group">
+    <div id="app" class="container-fluid">
+      <div class="row align-items-center text-center form-group justify-content-center">
+        <div class="col-sm-4">NES</div>
+        <div class="col-sm">Pattern Table 0</div>
+        <div class="col-sm">Pattern Table 1</div>
+        <div class="col-sm">Object Attribute Memory</div>
+      </div>
+
+      <div id="canvas" class="row align-items-center form-group justify-content-center">
         <div id="canvas-1" class="col-sm"></div>
         <div id="canvas-2" class="col-sm"></div>
         <div id="canvas-3"  class="col-sm"></div>
+        <div id="canvas-4"  class="col-sm"></div>
       </div>
 
+      <div class="row">
+        <form>
+          <div class="form-group">
+            <label for="romSelect">Change debug ROM</label>
+            <input type="file" class="form-control-file" id="romSelect">
+          </div>
+        </form>
+      </div>
       <div class="row">
         <div class="col-sm">
         <form>

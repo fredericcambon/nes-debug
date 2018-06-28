@@ -13,7 +13,6 @@ import "./helpers/external_links.js";
 //import "bootstrap";
 import { remote } from "electron";
 import jetpack from "fs-jetpack";
-import { greet } from "./hello_world/hello_world";
 import env from "env";
 import Console from "nes";
 import fs from "fs";
@@ -94,6 +93,9 @@ function createPixiApp(div, width, height, realWidth, realHeight) {
 
   pixiApp.stage.addChild(sprite);
 
+  document.querySelector(div + " canvas").style.cssText =
+    "display: block; margin-right: auto; margin-left: auto;";
+
   return [pixiApp, canvasImage, ctx, sprite];
 }
 
@@ -118,6 +120,14 @@ var [ptApp2, ptCanvasImage2, ptCtx2, ptSprite2] = createPixiApp(
   160,
   160,
   256,
+  256
+);
+
+var [oamApp, oamCanvasImage, oamCtx, oamSprite] = createPixiApp(
+  "#canvas-4",
+  80,
+  160,
+  128,
   256
 );
 
@@ -147,6 +157,13 @@ class NesDebugger {
     ptApp2.renderer.render(ptApp2.stage);
   }
 
+  renderOamTable(data) {
+    oamCanvasImage.data.set(data);
+    oamCtx.putImageData(oamCanvasImage, 0, 0);
+    oamSprite.texture.update();
+    oamApp.renderer.render(oamApp.stage);
+  }
+
   updateTickValues() {
     scanlineNumber.value = nes.ppu.scanline;
     frameNumber.value = nes.frameNbr;
@@ -154,6 +171,7 @@ class NesDebugger {
 
   updateTUI(t) {
     this.renderPatternTables(nes.ppu.getPatternTables());
+    this.renderOamTable(nes.ppu.getOamTable());
 
     switch (tui.activePage) {
       case "cpu": {
@@ -278,6 +296,10 @@ document.querySelector("#nesPauseToggle").addEventListener("click", () => {
   }
   nesRunning = !nesRunning;
 });
+
+document.querySelector("#romSelect").onchange = e => {
+  nes.loadROMData(fs.readFileSync(e.target.files[0].path));
+};
 
 var nesDebug = new NesDebugger();
 nes.addObserver(nesDebug);
